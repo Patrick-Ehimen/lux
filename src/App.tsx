@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainLayout from "./components/layouts/MainLayout";
 import TrendingPage from "./pages/TrendingPage";
-// import TokenPage from "./pages/TokenPage";
+import TokenPage from "./pages/TokenPage";
 import SearchModal from "./components/modals/SearchModal";
-// import PortfolioPage from "./pages/PortfolioPage";
-// import PumpFunPage from "./pages/PumpFunPage";
+import PortfolioPage from "./pages/PortfolioPage";
+import PumpFunPage from "./pages/PumpFunPage";
 
 const App = () => {
   const [isSearchModalOpen, setSearchModalOpen] = useState(false);
@@ -16,10 +16,10 @@ const App = () => {
         <MainLayout openSearchModal={() => setSearchModalOpen(true)}>
           <Routes>
             <Route path="/" element={<TrendingPage />} />
-            {/* <Route path="/:chainId" element={<TrendingPage />} />
+            <Route path="/:chainId" element={<TrendingPage />} />
             <Route path="/:chainId/:tokenAddress" element={<TokenPage />} />
             <Route path="/portfolio" element={<PortfolioPage />} />
-            <Route path="/pumpfun" element={<PumpFunPage />} /> */}
+            <Route path="/pumpfun" element={<PumpFunPage />} />
           </Routes>
         </MainLayout>
 

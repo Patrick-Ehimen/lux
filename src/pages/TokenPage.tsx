@@ -8,6 +8,7 @@ import TokenTransactions from "../components/tokens/TokenTransactions";
 import TokenHolders from "../components/tokens/TokenHolders";
 import TokenSnipers from "../components/tokens/TokenSnipers";
 import TokenHolderInsights from "../components/tokens/TokenHolderInsights";
+import type { TimeFrame } from "../components/tokens/TokenChart";
 
 import { API_KEY } from "../configs";
 
@@ -32,12 +33,44 @@ const TokenPage = () => {
   const { chainId: chainPath, tokenAddress } = useParams();
   const location = useLocation();
   const [loadingState, setLoadingState] = useState("initial"); // 'initial', 'data', 'complete'
-  const [tokenInfo, setTokenInfo] = useState(null);
-  const [pairs, setPairs] = useState([]);
-  const [selectedPair, setSelectedPair] = useState(null);
+  const [pairs, setPairs] = useState<PairType[]>([]);
+  const [selectedPair, setSelectedPair] = useState<PairType | null>(null);
   const [activeTab, setActiveTab] = useState("transactions");
-  const [timeFrame, setTimeFrame] = useState("1h");
+  // Import TimeFrame type from TokenChart
+  // @ts-ignore-next-line: Suppress error if import path is incorrect, adjust as needed
+  const [timeFrame, setTimeFrame] = useState<TimeFrame>("1h");
   const [error, setError] = useState<string | null>(null);
+  interface TokenInfoType {
+    address: string;
+    name: string;
+    symbol: string;
+    logo: string | null;
+    decimals: string;
+  }
+
+  const [tokenInfo, setTokenInfo] = useState<TokenInfoType | null>(null);
+  type PairType = {
+    chainId: string;
+    pairAddress: string;
+    exchangeName: string;
+    exchangeLogo?: string;
+    pairLabel: string;
+    liquidityUsd: number;
+    usdPrice?: number;
+    usdPrice24hrPercentChange?: number;
+    volume24hrUsd?: number;
+    baseToken?: any;
+    quoteToken?: any;
+    pair?: Array<{
+      tokenAddress: string;
+      tokenName?: string;
+      tokenSymbol?: string;
+      tokenLogo?: string;
+      tokenDecimals?: string;
+      pairTokenType?: string;
+      liquidityUsd?: number;
+    }>;
+  };
 
   // Convert URL path parameter to chain ID for API
   const getApiChainId = (chainPath: any) => {
@@ -135,10 +168,10 @@ const TokenPage = () => {
             return {
               chainId: chainId,
               pairAddress: pair.pairAddress || pair.pair_address,
-              exchangeName: pair.exchangeName || pair.exchange_name,
+              exchangeName: pair.exchangeName || pair.exchange_name || "",
               exchangeLogo: pair.exchangeLogo || pair.exchange_logo,
-              pairLabel: pair.pairLabel || pair.pair_label,
-              liquidityUsd: pair.liquidityUsd || pair.liquidity_usd,
+              pairLabel: pair.pairLabel || pair.pair_label || "",
+              liquidityUsd: pair.liquidityUsd ?? pair.liquidity_usd ?? 0,
               usdPrice: pair.usdPrice || pair.usd_price,
               usdPrice24hrPercentChange:
                 pair.usdPrice24hrPercentChange ||
@@ -176,12 +209,14 @@ const TokenPage = () => {
             const currentToken = normalizedPairs[0].pair.find(
               (token: any) =>
                 token.tokenAddress &&
+                token.tokenAddress &&
+                tokenAddress &&
                 token.tokenAddress.toLowerCase() === tokenAddress.toLowerCase()
             );
 
             if (currentToken) {
               setTokenInfo({
-                address: tokenAddress,
+                address: tokenAddress ?? "",
                 name: currentToken.tokenName,
                 symbol: currentToken.tokenSymbol,
                 logo: currentToken.tokenLogo,
@@ -194,10 +229,10 @@ const TokenPage = () => {
               );
               const fallbackToken = normalizedPairs[0].pair[0];
               setTokenInfo({
-                address: tokenAddress,
+                address: tokenAddress ?? "",
                 name:
                   fallbackToken?.tokenName ||
-                  `Token ${tokenAddress.substring(0, 6)}...`,
+                  `Token ${(tokenAddress ?? "").substring(0, 6)}...`,
                 symbol: fallbackToken?.tokenSymbol || "TOKEN",
                 logo: fallbackToken?.tokenLogo || null,
                 decimals: fallbackToken?.tokenDecimals || "18",
@@ -287,7 +322,7 @@ const TokenPage = () => {
         {/* Right side - Token info section */}
         <div className="w-full lg:w-80 xl:w-96 border-l border-dex-border overflow-y-auto">
           {/* Pair selector dropdown moved to top of right column */}
-          {pairs.length > 1 && (
+          {pairs.length > 1 && selectedPair && (
             <div className="border-b border-dex-border p-4">
               <PairSelector
                 pairs={pairs}
@@ -320,11 +355,11 @@ const TokenPage = () => {
         {activeTab === "transactions" && (
           <TokenTransactions
             pair={selectedPair}
-            chainId={selectedPair?.chainId}
+            chainId={selectedPair?.chainId ?? ""}
           />
         )}
 
-        {activeTab === "holders" && (
+        {activeTab === "holders" && tokenInfo && (
           <TokenHolders token={tokenInfo} chainId={chainId} />
         )}
 
@@ -332,12 +367,8 @@ const TokenPage = () => {
           <TokenHolderInsights token={tokenInfo} chainId={chainId} />
         )}
 
-        {activeTab === "snipers" && (
-          <TokenSnipers
-            token={tokenInfo}
-            pair={selectedPair}
-            chainId={chainId}
-          />
+        {activeTab === "snipers" && selectedPair && (
+          <TokenSnipers pair={selectedPair} chainId={chainId} />
         )}
       </div>
     </div>
