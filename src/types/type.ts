@@ -77,3 +77,41 @@ export interface TrendingTableProps {
   sortDirection?: "asc" | "desc";
   onSortChange?: (sortBy: string) => void;
 }
+
+export type Chain = {
+  chain: string;
+  networth_usd: string;
+};
+
+export type NetWorth = {
+  total_networth_usd: string;
+  chains?: Chain[];
+};
+
+export type NetWorthCardProps = {
+  netWorth?: NetWorth;
+  loading?: boolean;
+  error?: string;
+};
+
+export type Token = {
+  usd_value?: string | null;
+  token_address: string;
+  chain: string;
+  [key: string]: any;
+};
+
+export type Wallet = {
+  address: string;
+  name: string;
+  addedAt: string;
+  [key: string]: any;
+};
+
+export type WalletManagerProps = {
+  wallets: Wallet[];
+  selectedWallet: Wallet | null;
+  onAddWallet: (wallet: Wallet) => boolean;
+  onRemoveWallet: (address: string) => void;
+  onSelectWallet: (wallet: Wallet) => void;
+};
