@@ -10,6 +10,7 @@ import Linea from "./linea.svg";
 import Optimism from "./optimism.svg";
 import Pulse from "./pulse.svg";
 import Ronin from "./ronin.svg";
+import Coin from "../coins.jpg";
 
 export {
   Arbitrum,
@@ -24,4 +25,5 @@ export {
   Optimism,
   Pulse,
   Ronin,
+  Coin,
 };

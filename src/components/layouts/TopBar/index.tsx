@@ -48,7 +48,7 @@ const TopBar = ({
         </div>
 
         {/* Page navigation buttons - now centered */}
-        <div className="flex items-center justify-center">
+        {/* <div className="flex items-center justify-center">
           <div className="flex space-x-2">
             {pages.map((page) => (
               <button
@@ -61,7 +61,7 @@ const TopBar = ({
               </button>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Sorting and filtering tools */}
         <div className="flex items-center">

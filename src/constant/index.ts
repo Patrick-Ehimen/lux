@@ -11,7 +11,9 @@ import {
   Optimism,
   Pulse,
   Ronin,
+  Coin,
 } from "../assets/network-chains";
+
 export const CHAINS = [
   { id: "solana", name: "Solana", icon: Solana },
   { id: "0x1", name: "Ethereum", icon: Ethereum },
@@ -45,7 +47,7 @@ export const CHAIN_PATH_MAP: Record<string, string> = {
 
 // Network buttons with their routes
 export const networks = [
-  { id: "", name: "All Chains", icon: "🌐" },
+  { id: "", name: "All Chains", icon: Coin },
   { id: "solana", name: "Solana", icon: Solana },
   { id: "ethereum", name: "Ethereum", icon: Ethereum },
   { id: "base", name: "Base", icon: Base },

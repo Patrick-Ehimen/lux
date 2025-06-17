@@ -30,7 +30,7 @@ const LeftSidebar = ({ openSearchModal }: LeftSidebarProps) => {
             <div className="flex items-center space-x-2">
               <img src={Logo} alt="Whale.io Logo" className="w-8 h-8" />
               <span className={`font-bold text-lg ${isOpen ? "" : "hidden"}`}>
-                Whale.io Terminal
+                Lux.io Terminal
               </span>
             </div>
             <span
@@ -38,7 +38,7 @@ const LeftSidebar = ({ openSearchModal }: LeftSidebarProps) => {
                 isOpen ? "" : "hidden"
               }`}
             >
-              DexScreener
+              DexScreener Terminal
             </span>
           </div>
         </Link>
