@@ -1,46 +1,63 @@
-# Getting Started with Create React App
+# Lux - Your Web3 Portfolio Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Lux is a comprehensive web3 portfolio tracker that allows you to monitor your assets across multiple chains, discover trending tokens, and analyze token performance.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+### Multi-Chain Support
 
-### `npm start`
+Lux supports a wide range of popular blockchain networks, including Ethereum, Binance Smart Chain, Polygon, Arbitrum, Avalanche, Fantom, Optimism, Base, Linea, Ronin, and Solana.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![Multi-Chain Support](images/img1.png)
+_The app supports multiple chains_
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Portfolio Tracking
 
-### `npm test`
+Easily track your token holdings, net worth, and transaction history across all supported chains in one unified dashboard.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Portfolio Tracking](images/img2.png)
+_Track your portfolio across multiple chains_
 
-### `npm run build`
+### Trending Tokens
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Discover the hottest trending tokens and gain insights into their performance, market capitalization, and trading volume.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Trending Tokens](images/img3.png)
+_Discover trending tokens_
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Token Analysis
 
-### `npm run eject`
+Analyze token charts, token holder insights, and recent transactions to make informed investment decisions.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![Token Analysis](images/img4.png)
+_Analyze token performance_
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Usage
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1.  Clone the repository:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    ```bash
+    git clone https://github.com/your-username/Lux.git
+    ```
 
-## Learn More
+2.  Install dependencies:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    ```bash
+    npm install
+    ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3.  Run the app in development mode:
+
+    ```bash
+    npm start
+    ```
+
+4.  Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit pull requests or open issues to suggest improvements or report bugs.
+
+## License
+
+MIT
